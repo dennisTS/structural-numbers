@@ -51,7 +51,7 @@ public class ShowcaseTests {
 										.addColumn(3, 5, 6, 7)
 										.build();
 		
-		StructuralNumber actResult = number2.multiply(number1);
+		StructuralNumber actResult = new Multiplication(number2, number1).perform();
 		
 		assertEquals(expResult, actResult);
 	}

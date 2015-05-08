@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import com.google.common.collect.Queues;
+import static com.google.common.base.Preconditions.*;
 
 import ua.kpi.kafpe.snm.StructuralNumber.StructuralNumberOperation;
 
@@ -37,11 +38,21 @@ public class Multiplication extends StructuralNumberOperation{
 	}
 	
 	private StructuralNumber multiplyTwoNumbers(StructuralNumber firstFactor, StructuralNumber secondFactor) {
+		checkNotNull(firstFactor);
+		checkNotNull(secondFactor);
+		
+		if (firstFactor.isNull())
+			return secondFactor;
+		else if (secondFactor.isNull())
+			return firstFactor;
+		
+		if (firstFactor.equals(secondFactor))
+			return StructuralNumber.NULL;
+		
 		setFields(copyStructuralNumber(firstFactor), copyStructuralNumber(secondFactor), newStructuralNumber());
 		
 		Iterator<StructuralNumberColumn> sourceIterator = getColumnsFromNumber(source).iterator();
 		
-		//TODO do-while
 		while (sourceIterator.hasNext()) {
 			StructuralNumberColumn sourceColumn = sourceIterator.next();
 			

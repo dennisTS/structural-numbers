@@ -77,16 +77,16 @@ public class StructuralNumberOperationsTest {
 		number1.add(number3);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = NullPointerException.class)
 	public void testMultiplyNullArgument() {
-		number1.multiply(null);
+		new Multiplication(number1, null).perform();
 	}
 
 	@Test
 	public void testMultiplyByNull() {
 		final StructuralNumber expResult = number1;
 		
-		final StructuralNumber actResult = number1.multiply(StructuralNumber.NULL);
+		final StructuralNumber actResult = new Multiplication(number1, StructuralNumber.NULL).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -95,7 +95,7 @@ public class StructuralNumberOperationsTest {
 	public void testMultiplyNull() {
 		final StructuralNumber expResult = number1;
 		
-		final StructuralNumber actResult = StructuralNumber.NULL.multiply(number1);
+		final StructuralNumber actResult = new Multiplication(StructuralNumber.NULL, number1).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -104,7 +104,7 @@ public class StructuralNumberOperationsTest {
 	public void testMultiplyItself() {
 		final StructuralNumber expResult = StructuralNumber.NULL;
 		
-		final StructuralNumber actResult = number1.multiply(number1);
+		final StructuralNumber actResult = new Multiplication(number1, number1).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -130,7 +130,7 @@ public class StructuralNumberOperationsTest {
 										.addColumn(4, 7, 2, 5, 1)
 										.build();
 	
-		final StructuralNumber actResult = bigNumber.multiply(biggerNumber);
+		final StructuralNumber actResult = new Multiplication(bigNumber, biggerNumber).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -151,7 +151,7 @@ public class StructuralNumberOperationsTest {
 					.addColumn(1, 2, 3)
 					.build();
 
-		final StructuralNumber actResult = number1.multiply(number2);
+		final StructuralNumber actResult = new Multiplication(number1, number2).perform();
 
 		assertEquals(expResult, actResult);
 	}

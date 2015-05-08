@@ -1,7 +1,6 @@
 package ua.kpi.kafpe.snm;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -50,21 +49,6 @@ public final class StructuralNumber {
 		result.addAllColumns(addend.columns);
 		
 		return result;
-	}
-	
-	public StructuralNumber multiply(StructuralNumber factor) {
-		if (factor == null)
-			throw new IllegalArgumentException();
-		
-		if (factor.isNull())
-			return this;
-		else if (this.isNull())
-			return factor;
-		
-		if (this.equals(factor))
-			return StructuralNumber.NULL;
-		
-		return new Multiplication(this, factor).perform();
 	}
 	
 	public int getColumnsNumber() {
