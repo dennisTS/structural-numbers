@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import ua.kpi.kafpe.snm.operations.Addition;
+import ua.kpi.kafpe.snm.operation.Addition;
 
 public class StructuralNumberTest {
 

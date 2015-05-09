@@ -1,15 +1,16 @@
-package ua.kpi.kafpe.snm;
+package ua.kpi.kafpe.snm.operation;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import ua.kpi.kafpe.snm.StructuralNumber;
 import ua.kpi.kafpe.snm.exception.SizeInconsistencyException;
-import ua.kpi.kafpe.snm.operations.Addition;
-import ua.kpi.kafpe.snm.operations.Multiplication;
+import ua.kpi.kafpe.snm.operation.Addition;
+import ua.kpi.kafpe.snm.operation.Multiplication;
 
-public class StructuralNumberOperationsTest {
+public class AdditionAndMultiplicationTest {
 	private StructuralNumber number1, number2, number3;
 	
 	@Before

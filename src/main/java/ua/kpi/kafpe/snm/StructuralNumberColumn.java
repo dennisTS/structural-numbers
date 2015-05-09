@@ -2,6 +2,7 @@ package ua.kpi.kafpe.snm;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -85,5 +86,9 @@ public class StructuralNumberColumn {
 	@Override
 	public String toString() {
 		return innerColumn.toString();
+	}
+
+	public Set<? extends Integer> getInnerColumnCopy() {
+		return new HashSet<Integer>(this.innerColumn);
 	}
 }

@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import ua.kpi.kafpe.snm.operations.Addition;
-import ua.kpi.kafpe.snm.operations.Multiplication;
+import ua.kpi.kafpe.snm.operation.Addition;
+import ua.kpi.kafpe.snm.operation.Multiplication;
 
 public class ShowcaseTests {
 

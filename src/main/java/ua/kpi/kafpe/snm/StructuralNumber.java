@@ -92,7 +92,13 @@ public final class StructuralNumber {
 		}
 		
 		protected Set<StructuralNumberColumn> getColumnsFromNumber(StructuralNumber number) {
-			return number.columns;
+			Set<StructuralNumberColumn> resultSet = new HashSet<StructuralNumberColumn>();
+			
+			for (StructuralNumberColumn column : number.columns) {
+				resultSet.add(new StructuralNumberColumn(column));
+			}
+			
+			return resultSet;
 		}
 	}
 	

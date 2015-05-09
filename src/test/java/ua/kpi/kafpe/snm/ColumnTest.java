@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import ua.kpi.kafpe.snm.exception.DuplicateElementsException;
 
-public class StructuralNumberColumnTest {
+public class ColumnTest {
 
 	private Set<Integer> testSet1, testSet2, testSet3;
 	private StructuralNumberColumn column1, column2, column3;

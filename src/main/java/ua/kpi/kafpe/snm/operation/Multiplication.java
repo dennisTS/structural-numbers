@@ -1,4 +1,4 @@
-package ua.kpi.kafpe.snm.operations;
+package ua.kpi.kafpe.snm.operation;
 
 
 import java.util.Arrays;
@@ -24,6 +24,8 @@ public class Multiplication extends StructuralNumberOperation{
 	private Queue<StructuralNumber> factors;
 	
 	public Multiplication(StructuralNumber... factors) {
+		checkNotNull(factors);
+		
 		this.factors = Queues.newArrayDeque();
 		this.factors.addAll(Arrays.asList(factors));
 	}

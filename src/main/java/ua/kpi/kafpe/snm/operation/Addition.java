@@ -1,4 +1,4 @@
-package ua.kpi.kafpe.snm.operations;
+package ua.kpi.kafpe.snm.operation;
 
 import java.util.Arrays;
 import java.util.Queue;

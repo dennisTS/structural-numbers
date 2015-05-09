@@ -12,7 +12,7 @@ import org.junit.Test;
 import ua.kpi.kafpe.snm.exception.DuplicateElementsException;
 import ua.kpi.kafpe.snm.exception.SizeInconsistencyException;
 
-public class StructuralNumberBuilderTest {
+public class BuilderTest {
 	public StructuralNumber number;
 	public StructuralNumber number1;
 	public StructuralNumber number2;
