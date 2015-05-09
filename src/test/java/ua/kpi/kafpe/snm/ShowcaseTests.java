@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import ua.kpi.kafpe.snm.operations.Addition;
+import ua.kpi.kafpe.snm.operations.Multiplication;
+
 public class ShowcaseTests {
 
 	@Test
@@ -19,13 +22,18 @@ public class ShowcaseTests {
 			.addColumn(2, 6)
 			.addColumn(7, 5)
 			.build();
+		
+		StructuralNumber number3 = new StructuralNumber.Builder()
+			.addColumn(1, 2)
+			.build();
 	
 		StructuralNumber expResult = new StructuralNumber.Builder()
 										.addColumn(3, 5)
 										.addColumn(4, 2)
+										.addColumn(1, 2)
 										.build();
 		
-		StructuralNumber actResult = number2.add(number1);
+		StructuralNumber actResult = new Addition(number2, number1, number3).perform();
 		
 		assertEquals(expResult, actResult);
 	}

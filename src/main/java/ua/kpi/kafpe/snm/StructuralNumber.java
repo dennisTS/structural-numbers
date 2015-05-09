@@ -11,8 +11,6 @@ public final class StructuralNumber {
 
 	public static final StructuralNumber NULL = new StructuralNumber.Builder().build();
 
-	private static final String NULL_ARGUMENT_MESSAGE = "Argument is null";
-	
 	private final Set<StructuralNumberColumn> columns;
 	
 	private StructuralNumber() {
@@ -27,28 +25,6 @@ public final class StructuralNumber {
 		}
 		
 		this.columns = destinationColumns;
-	}
-	
-	public StructuralNumber add(StructuralNumber addend) {
-		if (addend == null)
-			throw new IllegalArgumentException(NULL_ARGUMENT_MESSAGE);
-		
-		if (addend.isNull())
-			return this;
-		else if (this.isNull())
-			return addend;
-		
-		if (this.equals(addend))
-			return StructuralNumber.NULL;
-		
-		if (this.getRowsNumber() != addend.getRowsNumber())
-			throw new SizeInconsistencyException();
-		
-		StructuralNumber result = new StructuralNumber(this);
-		
-		result.addAllColumns(addend.columns);
-		
-		return result;
 	}
 	
 	public int getColumnsNumber() {
@@ -122,9 +98,11 @@ public final class StructuralNumber {
 	
 	protected boolean addColumn(StructuralNumberColumn column) {
 		checkForSizeConsistency(column);
+		
+		StructuralNumberColumn columnCopy = new StructuralNumberColumn(column);
 		 
-		if (!columns.add(column)) {
-			columns.remove(column);
+		if (!columns.add(columnCopy)) {
+			columns.remove(columnCopy);
 			return false;
 		}
 			
@@ -136,11 +114,7 @@ public final class StructuralNumber {
 		while (iterator.hasNext()) {
 			StructuralNumberColumn column = iterator.next();
 			
-			checkForSizeConsistency(column);
-			
-			if (!columns.add(column)) {
-				columns.remove(column);
-			}
+			addColumn(column);
 		}
 	}
 	
@@ -171,5 +145,7 @@ public final class StructuralNumber {
 	public String toString() {
 		return columns.toString();
 	}
+	
+	//TODO toSet()
 
 }

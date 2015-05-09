@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ua.kpi.kafpe.snm.exception.SizeInconsistencyException;
+import ua.kpi.kafpe.snm.operations.Addition;
+import ua.kpi.kafpe.snm.operations.Multiplication;
 
 public class StructuralNumberOperationsTest {
 	private StructuralNumber number1, number2, number3;
@@ -28,16 +30,16 @@ public class StructuralNumberOperationsTest {
 			.build();
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = NullPointerException.class)
 	public void testAddNullArgument() {
-		number1.add(null);
+		new Addition(number1, null).perform();
 	}
 
 	@Test
 	public void testAddNull() {
 		final StructuralNumber expResult = number1;
 		
-		final StructuralNumber actResult = number1.add(StructuralNumber.NULL);
+		final StructuralNumber actResult = new Addition(number1, StructuralNumber.NULL).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -46,7 +48,7 @@ public class StructuralNumberOperationsTest {
 	public void testAddToNull() {
 		final StructuralNumber expResult = number1;
 		
-		final StructuralNumber actResult = StructuralNumber.NULL.add(number1);
+		final StructuralNumber actResult = new Addition(StructuralNumber.NULL, number1).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -55,7 +57,7 @@ public class StructuralNumberOperationsTest {
 	public void testAddItself() {
 		final StructuralNumber expResult = StructuralNumber.NULL;
 		
-		final StructuralNumber actResult = number1.add(number1);
+		final StructuralNumber actResult = new Addition(number1, number1).perform();
 		
 		assertEquals(expResult, actResult);
 	}
@@ -67,14 +69,14 @@ public class StructuralNumberOperationsTest {
 												.addColumn(3, 5)
 												.build();
 		
-		final StructuralNumber actResult = number1.add(number2);
+		final StructuralNumber actResult = new Addition(number1, number2).perform();
 		
 		assertEquals(expResult, actResult);
 	}
 
 	@Test (expected = SizeInconsistencyException.class)
 	public void testAddAnotherOfDifferentSize() {
-		number1.add(number3);
+		new Addition(number1, number3).perform();
 	}
 	
 	@Test (expected = NullPointerException.class)

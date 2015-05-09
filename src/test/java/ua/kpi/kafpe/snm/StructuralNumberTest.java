@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import ua.kpi.kafpe.snm.operations.Addition;
+
 public class StructuralNumberTest {
 
 	private StructuralNumber number;
@@ -50,7 +52,7 @@ public class StructuralNumberTest {
 													.addColumn(2, 3)
 													.build();
 		
-		final StructuralNumber actResult = simpleNumber1.add(simpleNumber2);
+		final StructuralNumber actResult = new Addition(simpleNumber1, simpleNumber2).perform();
 		
 		assertEquals(expResult, actResult);
 	}

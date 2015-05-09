@@ -1,4 +1,4 @@
-package ua.kpi.kafpe.snm;
+package ua.kpi.kafpe.snm.operations;
 
 
 import java.util.Arrays;
@@ -8,8 +8,10 @@ import java.util.Queue;
 import java.util.Set;
 
 import com.google.common.collect.Queues;
-import static com.google.common.base.Preconditions.*;
 
+import static com.google.common.base.Preconditions.*;
+import ua.kpi.kafpe.snm.StructuralNumber;
+import ua.kpi.kafpe.snm.StructuralNumberColumn;
 import ua.kpi.kafpe.snm.StructuralNumber.StructuralNumberOperation;
 
 public class Multiplication extends StructuralNumberOperation{
@@ -28,11 +30,16 @@ public class Multiplication extends StructuralNumberOperation{
 	
 	@Override
 	public StructuralNumber perform() {
+		if (factors == null)
+			throw new UnsupportedOperationException("The same operation can`t be performed twice");
+		
 		StructuralNumber temp = newStructuralNumber();
 		
 		for (StructuralNumber factor : factors) {
 			temp = multiplyTwoNumbers(temp, factor);
 		}
+		
+		factors = null;
 		
 		return temp;
 	}
@@ -56,7 +63,7 @@ public class Multiplication extends StructuralNumberOperation{
 		while (sourceIterator.hasNext()) {
 			StructuralNumberColumn sourceColumn = sourceIterator.next();
 			
-			result.addAllColumns(getColumnUnionsForSource(sourceColumn));
+			addAllColumnsToNumber(getColumnUnionsForSource(sourceColumn), result);
 		}
 
 		//setFields(null, null, null);

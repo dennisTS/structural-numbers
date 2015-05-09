@@ -8,37 +8,37 @@ import java.util.TreeSet;
 
 import ua.kpi.kafpe.snm.exception.DuplicateElementsException;
 
-class StructuralNumberColumn {
+public class StructuralNumberColumn {
 
 	private Set<Integer> innerColumn;
 
-	StructuralNumberColumn(StructuralNumberColumn column) {
+	public StructuralNumberColumn(StructuralNumberColumn column) {
 		this.innerColumn = new TreeSet<Integer>(column.innerColumn);
 	}
 	
-	StructuralNumberColumn(Set<Integer> column) {
+	public StructuralNumberColumn(Set<Integer> column) {
 		this.innerColumn = new TreeSet<Integer>(column);;
 	}
 	
-	StructuralNumberColumn(Collection<Integer> column) {
+	public StructuralNumberColumn(Collection<Integer> column) {
 		this.innerColumn = new TreeSet<Integer>(column);
 		
 		if (this.innerColumn.size() != column.size())
 			throw new DuplicateElementsException();
 	}
 
-	StructuralNumberColumn(Integer... column) {
+	public StructuralNumberColumn(Integer... column) {
 		this.innerColumn = new TreeSet<Integer>(Arrays.asList(column));
 		
 		if (this.innerColumn.size() != column.length)
 			throw new DuplicateElementsException();
 	}
 
-	boolean addElement(Integer element) {
+	public boolean addElement(Integer element) {
 		return innerColumn.add(element);
 	}
 	
-	boolean addAllElementsFromColumn(StructuralNumberColumn otherColumn) {
+	public boolean addAllElementsFromColumn(StructuralNumberColumn otherColumn) {
 		if (this.containsAtLeastOneOf(otherColumn))
 			return false;
 		else {
@@ -60,7 +60,7 @@ class StructuralNumberColumn {
 		return contains;
 	}
 
-	int size() {
+	public int size() {
 		return innerColumn.size();
 	}
 	
