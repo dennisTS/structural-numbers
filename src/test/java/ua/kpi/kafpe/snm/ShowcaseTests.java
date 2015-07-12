@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import ua.kpi.kafpe.snm.operation.Addition;
+import ua.kpi.kafpe.snm.operation.AlgebraicDifferentiation;
 import ua.kpi.kafpe.snm.operation.Multiplication;
+import ua.kpi.kafpe.snm.operation.OppositeDifferentiation;
 
 public class ShowcaseTests {
 
@@ -62,6 +64,41 @@ public class ShowcaseTests {
 		StructuralNumber actResult = new Multiplication(number2, number1).perform();
 		
 		assertEquals(expResult, actResult);
+	}
+	
+	@Test
+	public void testDifferentiateAlgebraic() {
+		StructuralNumber number = new StructuralNumber.Builder()
+									.addColumn(1, 2, 3)
+									.addColumn(3, 4, 5)
+									.addColumn(5, 6, 2)
+									.build();
+
+	StructuralNumber expResult = new StructuralNumber.Builder()
+									.addColumn(1, 3)
+									.addColumn(5, 6)
+									.build();
+	
+	StructuralNumber actResult = new AlgebraicDifferentiation(number, 2).perform();
+	
+	assertEquals(expResult, actResult);
+	}
+	
+	@Test
+	public void testDifferentiateOpposite() {
+		StructuralNumber number = new StructuralNumber.Builder()
+									.addColumn(1, 2, 3)
+									.addColumn(3, 5, 7)
+									.addColumn(4, 2, 6)
+									.build();
+
+	StructuralNumber expResult = new StructuralNumber.Builder()
+									.addColumn(2, 4, 6)
+									.build();
+	
+	StructuralNumber actResult = new OppositeDifferentiation(number, 3).perform();
+	
+	assertEquals(expResult, actResult);
 	}
 
 }

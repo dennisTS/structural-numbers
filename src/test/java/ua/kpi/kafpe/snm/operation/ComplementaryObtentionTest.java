@@ -19,11 +19,6 @@ public class ComplementaryObtentionTest {
 						.build();
 	}
 	
-	@Test (expected = NullPointerException.class)
-	public void testPassNull() {
-		new ComplementaryObtention(null).perform();
-	}
-	
 	@Test
 	public void testPassNullStructuralNumber() {
 		StructuralNumber expResult = StructuralNumber.NULL;

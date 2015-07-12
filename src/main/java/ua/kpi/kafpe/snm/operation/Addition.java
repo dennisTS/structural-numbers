@@ -1,6 +1,5 @@
 package ua.kpi.kafpe.snm.operation;
 
-import java.util.Arrays;
 import java.util.Queue;
 
 import com.google.common.collect.Queues;
@@ -16,7 +15,7 @@ public class Addition extends StructuralNumberOperation {
 
 	public Addition(StructuralNumber... addends) {
 		this.addends = Queues.newArrayDeque();
-		this.addends.addAll(Arrays.asList(addends));
+		this.addends = copyStructuralNumbers(addends);
 	}
 	
 	@Override
@@ -53,7 +52,7 @@ public class Addition extends StructuralNumberOperation {
 		StructuralNumber copyDestination = copyStructuralNumber(firstAddend);
 		StructuralNumber copySource = copyStructuralNumber(secondAddend);
 		
-		addAllColumnsToNumber(getColumnsFromNumber(copySource), copyDestination);
+		addAllColumnsToNumber(getColumnsCopyFromNumber(copySource), copyDestination);
 		
 		return copyDestination;
 	}

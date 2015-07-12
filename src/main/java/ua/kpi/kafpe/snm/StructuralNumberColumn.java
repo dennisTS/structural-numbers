@@ -48,6 +48,10 @@ public class StructuralNumberColumn {
 		}
 	}
 	
+	public boolean removeElement(Integer element) {
+		return this.innerColumn.remove(element);
+	}
+	
 	private boolean containsAtLeastOneOf(StructuralNumberColumn otherColumn) {
 		boolean contains = false;
 		

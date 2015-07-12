@@ -49,13 +49,13 @@ public class ComplementaryObtention extends StructuralNumberOperation {
 	private void fillElementSetForNumber() {
 		elementSet = new HashSet<Integer>();
 		
-		for (StructuralNumberColumn column : getColumnsFromNumber(number)) {
+		for (StructuralNumberColumn column : getColumnsCopyFromNumber(number)) {
 			elementSet.addAll(column.getInnerColumnCopy());
 		}
 	}
 
 	private void fillComplementary() {
-		for (StructuralNumberColumn column : getColumnsFromNumber(number)) {
+		for (StructuralNumberColumn column : getColumnsCopyFromNumber(number)) {
 			addColumnToNumber(getComplementaryColumn(column), complementary);
 		}
 	}

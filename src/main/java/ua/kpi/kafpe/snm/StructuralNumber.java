@@ -3,7 +3,10 @@ package ua.kpi.kafpe.snm;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Queue;
 import java.util.Set;
+
+import com.google.common.collect.Queues;
 
 import ua.kpi.kafpe.snm.exception.SizeInconsistencyException;
 
@@ -83,6 +86,15 @@ public final class StructuralNumber {
 			return new StructuralNumber(number);
 		}
 		
+		protected Queue<StructuralNumber> copyStructuralNumbers(StructuralNumber... numbers) {
+			Queue<StructuralNumber> queue = Queues.newArrayDeque();
+			
+			for (StructuralNumber number : numbers)
+				queue.add(new StructuralNumber(number));
+			
+			return queue;
+		}
+		
 		protected boolean addColumnToNumber(StructuralNumberColumn column, StructuralNumber number) {
 			return number.addColumn(column);
 		}
@@ -91,7 +103,7 @@ public final class StructuralNumber {
 			number.addAllColumns(newColumns);
 		}
 		
-		protected Set<StructuralNumberColumn> getColumnsFromNumber(StructuralNumber number) {
+		protected Set<StructuralNumberColumn> getColumnsCopyFromNumber(StructuralNumber number) {
 			Set<StructuralNumberColumn> resultSet = new HashSet<StructuralNumberColumn>();
 			
 			for (StructuralNumberColumn column : number.columns) {
