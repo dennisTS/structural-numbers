@@ -22,14 +22,15 @@ public class Determinant extends StructuralNumberOperation {
 		checkNotNull(numberMap);
 		
 		this.number = copyStructuralNumber(number);
-		this.numberMap = new HashMap<Integer, Complex>(numberMap);
+		this.numberMap = new HashMap<>(numberMap);
 	}
 	
 	@Override
 	public StructuralNumber perform() {
 		throw new UnsupportedOperationException();
 	}
-	
+
+	//TODO can be optimized by pre-compiling a function with separate delayed calculation
 	public Complex calculate() {
 		if (number == StructuralNumber.NULL)
 			return Complex.NaN;

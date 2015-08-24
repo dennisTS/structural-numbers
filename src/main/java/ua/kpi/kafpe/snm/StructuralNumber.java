@@ -17,11 +17,11 @@ public final class StructuralNumber {
 	private final Set<StructuralNumberColumn> columns;
 	
 	private StructuralNumber() {
-		columns = new HashSet<StructuralNumberColumn>();
+		columns = new HashSet<>();
 	}
 
 	private StructuralNumber(StructuralNumber number) {
-		HashSet<StructuralNumberColumn> destinationColumns = new HashSet<StructuralNumberColumn>();
+		HashSet<StructuralNumberColumn> destinationColumns = new HashSet<>();
 		
 		for (final StructuralNumberColumn col : number.columns) {
 			destinationColumns.add(new StructuralNumberColumn(col));
@@ -83,6 +83,9 @@ public final class StructuralNumber {
 		}
 		
 		protected StructuralNumber copyStructuralNumber(StructuralNumber number) {
+			if (number == NULL)
+				return NULL;
+
 			return new StructuralNumber(number);
 		}
 		
@@ -104,7 +107,7 @@ public final class StructuralNumber {
 		}
 		
 		protected Set<StructuralNumberColumn> getColumnsCopyFromNumber(StructuralNumber number) {
-			Set<StructuralNumberColumn> resultSet = new HashSet<StructuralNumberColumn>();
+			Set<StructuralNumberColumn> resultSet = new HashSet<>();
 			
 			for (StructuralNumberColumn column : number.columns) {
 				resultSet.add(new StructuralNumberColumn(column));
@@ -128,12 +131,8 @@ public final class StructuralNumber {
 	}
 	
 	protected void addAllColumns(Set<StructuralNumberColumn> newColumns) {
-		Iterator<StructuralNumberColumn> iterator = newColumns.iterator();
-		while (iterator.hasNext()) {
-			StructuralNumberColumn column = iterator.next();
-			
+		for (StructuralNumberColumn column : newColumns)
 			addColumn(column);
-		}
 	}
 	
 	private void checkForSizeConsistency(StructuralNumberColumn column) {
@@ -152,7 +151,7 @@ public final class StructuralNumber {
 		StructuralNumber structuralNumber = (StructuralNumber) obj;
 		
 		return this.columns.equals(structuralNumber.columns);
-	};
+	}
 	
 	@Override
 	public int hashCode() {

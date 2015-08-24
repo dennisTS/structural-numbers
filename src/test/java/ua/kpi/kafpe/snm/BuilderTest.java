@@ -106,8 +106,8 @@ public class BuilderTest {
 
 		final StructuralNumber actResult = new StructuralNumber.Builder()
 												.addColumn()
-												.addColumn(Collections.emptySet())
-												.build();
+												.addColumn(Collections.<Integer>emptySet())
+				.build();
 
 		assertEquals(expResult, actResult);
 	}
