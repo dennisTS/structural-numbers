@@ -42,7 +42,7 @@ public final class StructuralNumber {
 	}
 	
 	public static class Builder {
-		private StructuralNumber number = new StructuralNumber();
+		private final StructuralNumber number = new StructuralNumber();
 		
 		public Builder() {
 			
@@ -96,8 +96,8 @@ public final class StructuralNumber {
 			return queue;
 		}
 		
-		protected boolean addColumnToNumber(StructuralNumberColumn column, StructuralNumber number) {
-			return number.addColumn(column);
+		protected void addColumnToNumber(StructuralNumberColumn column, StructuralNumber number) {
+			number.addColumn(column);
 		}
 		
 		protected void addAllColumnsToNumber(Set<StructuralNumberColumn> newColumns, StructuralNumber number) {
@@ -115,20 +115,17 @@ public final class StructuralNumber {
 		}
 	}
 	
-	protected boolean addColumn(StructuralNumberColumn column) {
+	private void addColumn(StructuralNumberColumn column) {
 		checkForSizeConsistency(column);
 		
 		StructuralNumberColumn columnCopy = new StructuralNumberColumn(column);
 		 
 		if (!columns.add(columnCopy)) {
 			columns.remove(columnCopy);
-			return false;
 		}
-			
-		return true;
 	}
 	
-	protected void addAllColumns(Set<StructuralNumberColumn> newColumns) {
+	private void addAllColumns(Set<StructuralNumberColumn> newColumns) {
 		for (StructuralNumberColumn column : newColumns)
 			addColumn(column);
 	}

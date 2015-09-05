@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class MockCallableGraph implements CallableGraph {
 
-    private Set<Integer> removedEdges;
+    private final Set<Integer> removedEdges;
 
     public MockCallableGraph() {
         removedEdges = new HashSet<>();
@@ -16,7 +16,7 @@ public class MockCallableGraph implements CallableGraph {
     public boolean hasOrientationAgreement(Set<Integer> removedEdges) throws UnsupportedOperationException {
         this.removedEdges.addAll(removedEdges);
 
-        if (removedEdges.isEmpty()) {
+        if (this.removedEdges.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No edges were removed");
         }
 

@@ -3,7 +3,6 @@ package ua.kpi.kafpe.snm;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,25 +10,25 @@ import ua.kpi.kafpe.snm.exception.DuplicateElementsException;
 
 public class StructuralNumberColumn {
 
-	private Set<Integer> innerColumn;
+	private final Set<Integer> innerColumn;
 
 	public StructuralNumberColumn(StructuralNumberColumn column) {
-		this.innerColumn = new TreeSet<Integer>(column.innerColumn);
+		this.innerColumn = new TreeSet<>(column.innerColumn);
 	}
 	
 	public StructuralNumberColumn(Set<Integer> column) {
-		this.innerColumn = new TreeSet<Integer>(column);;
+		this.innerColumn = new TreeSet<>(column);
 	}
 	
 	public StructuralNumberColumn(Collection<Integer> column) {
-		this.innerColumn = new TreeSet<Integer>(column);
+		this.innerColumn = new TreeSet<>(column);
 		
 		if (this.innerColumn.size() != column.size())
 			throw new DuplicateElementsException();
 	}
 
 	public StructuralNumberColumn(Integer... column) {
-		this.innerColumn = new TreeSet<Integer>(Arrays.asList(column));
+		this.innerColumn = new TreeSet<>(Arrays.asList(column));
 		
 		if (this.innerColumn.size() != column.length)
 			throw new DuplicateElementsException();
@@ -48,17 +47,15 @@ public class StructuralNumberColumn {
 		}
 	}
 	
-	public boolean removeElement(Integer element) {
-		return this.innerColumn.remove(element);
+	public void removeElement(Integer element) {
+		this.innerColumn.remove(element);
 	}
 	
 	private boolean containsAtLeastOneOf(StructuralNumberColumn otherColumn) {
 		boolean contains = false;
-		
-		Iterator<Integer> iterator = otherColumn.innerColumn.iterator(); 
-		
-		while (iterator.hasNext()) {
-			if (this.innerColumn.contains(iterator.next()))
+
+		for (Integer anInnerColumn : otherColumn.innerColumn) {
+			if (this.innerColumn.contains(anInnerColumn))
 				contains = true;
 		}
 		
@@ -93,6 +90,6 @@ public class StructuralNumberColumn {
 	}
 
 	public Set<? extends Integer> getInnerColumnCopy() {
-		return new HashSet<Integer>(this.innerColumn);
+		return new HashSet<>(this.innerColumn);
 	}
 }

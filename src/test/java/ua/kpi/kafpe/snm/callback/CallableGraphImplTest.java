@@ -9,7 +9,7 @@ import java.util.HashSet;
 import static org.junit.Assert.assertTrue;
 
 public class CallableGraphImplTest {
-    MockCallableGraph callableGraph;
+    private MockCallableGraph callableGraph;
 
     @Before
     public void setUp() {

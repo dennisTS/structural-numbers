@@ -11,8 +11,8 @@ import ua.kpi.kafpe.snm.StructuralNumberColumn;
 
 public class Conjunction extends StructuralNumberOperation {
 
-	private StructuralNumber number1;
-	private StructuralNumber number2;
+	private final StructuralNumber number1;
+	private final StructuralNumber number2;
 	
 	public Conjunction(StructuralNumber number1, StructuralNumber number2) {
 		checkNotNull(number1);

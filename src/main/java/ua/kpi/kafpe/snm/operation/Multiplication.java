@@ -2,7 +2,6 @@ package ua.kpi.kafpe.snm.operation;
 
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Queue;
 import java.util.Set;
 
@@ -58,12 +57,8 @@ public class Multiplication extends StructuralNumberOperation{
 			return StructuralNumber.NULL;
 		
 		setFields(copyStructuralNumber(firstFactor), copyStructuralNumber(secondFactor), newStructuralNumber());
-		
-		Iterator<StructuralNumberColumn> sourceIterator = getColumnsCopyFromNumber(source).iterator();
-		
-		while (sourceIterator.hasNext()) {
-			StructuralNumberColumn sourceColumn = sourceIterator.next();
-			
+
+		for (StructuralNumberColumn sourceColumn : getColumnsCopyFromNumber(source)) {
 			addAllColumnsToNumber(getColumnUnionsForSource(sourceColumn), result);
 		}
 
@@ -78,14 +73,12 @@ public class Multiplication extends StructuralNumberOperation{
 		this.result = result;
 	}
 
-	Set<StructuralNumberColumn> getColumnUnionsForSource(StructuralNumberColumn sourceColumn) {
-		Set<StructuralNumberColumn> singleSourceUnion = new HashSet<StructuralNumberColumn>();
-		
-		Iterator<StructuralNumberColumn> destinationIterator = getColumnsCopyFromNumber(destination).iterator();
-		
-		while (destinationIterator.hasNext()) {
-			StructuralNumberColumn destinationColumn = new StructuralNumberColumn(destinationIterator.next());
-			
+	private Set<StructuralNumberColumn> getColumnUnionsForSource(StructuralNumberColumn sourceColumn) {
+		Set<StructuralNumberColumn> singleSourceUnion = new HashSet<>();
+
+		for (StructuralNumberColumn column : getColumnsCopyFromNumber(destination)) {
+			StructuralNumberColumn destinationColumn = new StructuralNumberColumn(column);
+
 			if (destinationColumn.addAllElementsFromColumn(sourceColumn)) {
 				singleSourceUnion.add(destinationColumn);
 			}

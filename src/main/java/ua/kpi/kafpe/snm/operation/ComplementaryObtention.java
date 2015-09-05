@@ -47,7 +47,7 @@ public class ComplementaryObtention extends StructuralNumberOperation {
 	}
 
 	private void fillElementSetForNumber() {
-		elementSet = new HashSet<Integer>();
+		elementSet = new HashSet<>();
 		
 		for (StructuralNumberColumn column : getColumnsCopyFromNumber(number)) {
 			elementSet.addAll(column.getInnerColumnCopy());
@@ -61,7 +61,7 @@ public class ComplementaryObtention extends StructuralNumberOperation {
 	}
 
 	private StructuralNumberColumn getComplementaryColumn(StructuralNumberColumn column) {
-		Set<Integer> tempSet = new HashSet<Integer>(elementSet);
+		Set<Integer> tempSet = new HashSet<>(elementSet);
 		tempSet.removeAll(column.getInnerColumnCopy());
 		
 		return new StructuralNumberColumn(tempSet);

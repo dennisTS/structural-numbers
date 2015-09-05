@@ -16,15 +16,14 @@ import ua.kpi.kafpe.snm.exception.DuplicateElementsException;
 
 public class ColumnTest {
 
-	private Set<Integer> testSet1, testSet2, testSet3;
 	private StructuralNumberColumn column1, column2, column3;
 	
 	@Before
 	public void init() {
-		testSet1 = new TreeSet<Integer>(Arrays.<Integer>asList(1, 2, 3, 4));
-		testSet2 = new TreeSet<Integer>(Arrays.<Integer>asList(1, 2, 3, 4));
-		
-		testSet3 = new TreeSet<Integer>(Arrays.<Integer>asList(5, 6, 7, 8));
+		Set<Integer> testSet1 = new TreeSet<>(Arrays.asList(1, 2, 3, 4));
+		Set<Integer> testSet2 = new TreeSet<>(Arrays.asList(1, 2, 3, 4));
+
+		Set<Integer> testSet3 = new TreeSet<>(Arrays.asList(5, 6, 7, 8));
 		
 		column1 = new StructuralNumberColumn(testSet1);
 		column2 = new StructuralNumberColumn(testSet2);
@@ -88,7 +87,7 @@ public class ColumnTest {
 	
 	@Test
 	public void testHashCodeMultipleTimes() {
-		Set<Integer> set = new HashSet<Integer>();
+		Set<Integer> set = new HashSet<>();
 		
 		for (int i = 0; i <= 10000; i++) {
 			set.add(column1.hashCode());
@@ -104,7 +103,7 @@ public class ColumnTest {
 	@SuppressWarnings("unused")
 	@Test (expected = DuplicateElementsException.class)
 	public void testNewColumnAsCollectionWithDuplicateElements() {
-		Collection<Integer> testCollection = new ArrayList<Integer>(Arrays.<Integer>asList(1, 2, 2, 7));
+		Collection<Integer> testCollection = new ArrayList<>(Arrays.asList(1, 2, 2, 7));
 		StructuralNumberColumn column = new StructuralNumberColumn(testCollection);
 	}
 	

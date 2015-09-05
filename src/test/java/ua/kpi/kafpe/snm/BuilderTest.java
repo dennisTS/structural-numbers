@@ -6,38 +6,13 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import ua.kpi.kafpe.snm.exception.DuplicateElementsException;
 import ua.kpi.kafpe.snm.exception.SizeInconsistencyException;
 
 public class BuilderTest {
-	public StructuralNumber number;
-	public StructuralNumber number1;
-	public StructuralNumber number2;
-	public StructuralNumber number3;
-
-	@Before
-	public void init() {
-		number1 = new StructuralNumber.Builder()
-						.addColumn(2, 7)
-						.addColumn(3, 5)
-						.addColumn(4, 7)
-						.build();
-
-		number2 = new StructuralNumber.Builder()
-						.addColumn(2, 7)
-						.addColumn(3, 5)
-						.addColumn(4, 7)
-						.build();
-
-		number3 = new StructuralNumber.Builder()
-						.addColumn(2, 7, 1)
-						.addColumn(3, 5, 2)
-						.addColumn(4, 7, 3)
-						.build();
-	}
+	private StructuralNumber number;
 
 	@Test
 	public void testNewInstanceIsNull() {

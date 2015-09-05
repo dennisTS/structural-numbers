@@ -10,7 +10,7 @@ public abstract class Differentiation extends StructuralNumberOperation {
 	protected Integer alpha;
 
 	protected boolean isSingleElementNumber() {
-		return (number.getColumnsNumber() == 1 && number.getRowsNumber() == 1) ? true : false;
+		return (number.getColumnsNumber() == 1 && number.getRowsNumber() == 1);
 	}
 
 	protected boolean checkColumnForAlpha(StructuralNumberColumn column) {
