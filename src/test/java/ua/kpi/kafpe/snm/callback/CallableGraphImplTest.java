@@ -18,8 +18,6 @@ public class CallableGraphImplTest {
 
     @Test
     public void test() {
-        callableGraph.removeEdges(new HashSet<>(Arrays.asList(1, 2, 3)));
-
-        assertTrue(callableGraph.hasOrientationAgreement());
+        assertTrue(callableGraph.hasOrientationAgreement(new HashSet<>(Arrays.asList(1, 2, 3))));
     }
 }

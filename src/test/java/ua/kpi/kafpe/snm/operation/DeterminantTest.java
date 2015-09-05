@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import ua.kpi.kafpe.snm.StructuralNumber;
 
-public class DeterminantalTest {
+public class DeterminantTest {
 
 	@Test (expected = UnsupportedOperationException.class)
 	public void testPerformThrowsException() {
@@ -32,11 +32,11 @@ public class DeterminantalTest {
 											.addColumn(1, 2)
 											.addColumn(9, 8)
 											.build();
-		final Map <Integer, Complex> numberMap = new HashMap<Integer, Complex>();
-		numberMap.put(new Integer(1), new Complex(1D, 0D));
-		numberMap.put(new Integer(2), new Complex(2D, 1D));
-		numberMap.put(new Integer(9), new Complex(0D, -2D));
-		numberMap.put(new Integer(8), new Complex(4D, 8D));
+		final Map <Integer, Complex> numberMap = new HashMap<>();
+		numberMap.put(1, new Complex(1D, 0D));
+		numberMap.put(2, new Complex(2D, 1D));
+		numberMap.put(9, new Complex(0D, -2D));
+		numberMap.put(8, new Complex(4D, 8D));
 		
 		final Complex expResult = new Complex(18D, -7D);
 		

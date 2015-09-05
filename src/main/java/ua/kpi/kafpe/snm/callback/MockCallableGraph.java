@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MockCallableGraph extends CallableGraph {
+public class MockCallableGraph implements CallableGraph {
 
     private Set<Integer> removedEdges;
 
@@ -13,9 +13,12 @@ public class MockCallableGraph extends CallableGraph {
     }
 
     @Override
-    public boolean hasOrientationAgreement() throws UnsupportedOperationException {
-        if (removedEdges.isEmpty())
+    public boolean hasOrientationAgreement(Set<Integer> removedEdges) throws UnsupportedOperationException {
+        this.removedEdges.addAll(removedEdges);
+
+        if (removedEdges.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No edges were removed");
+        }
 
         int choice = JOptionPane.showOptionDialog(null,
                 "Does the graph have orientation agreement after removing edges " + removedEdges + "?",
@@ -30,8 +33,4 @@ public class MockCallableGraph extends CallableGraph {
         return false;
     }
 
-    @Override
-    public void removeEdges(Set<Integer> edges) {
-        removedEdges.addAll(edges);
-    }
 }

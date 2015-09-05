@@ -1,10 +1,6 @@
 package ua.kpi.kafpe.snm;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 import com.google.common.collect.Queues;
 
@@ -76,7 +72,9 @@ public final class StructuralNumber {
 	}
 	
 	public static abstract class StructuralNumberOperation {
-		public abstract StructuralNumber perform();
+		public StructuralNumber perform() {
+			throw new UnsupportedOperationException();
+		}
 		
 		protected StructuralNumber newStructuralNumber() {
 			return new StructuralNumber();
@@ -158,6 +156,25 @@ public final class StructuralNumber {
 		return columns.hashCode();
 	}
 	
+	public String toReadableString() {
+		List<List<Integer>> list = new ArrayList<>();
+		for (StructuralNumberColumn column : columns) {
+			list.add(new ArrayList<>(column.getInnerColumnCopy()));
+		}
+
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < getRowsNumber(); i++) {
+			for (List<Integer> column : list) {
+				result.append(column.get(i));
+				result.append(" ");
+			}
+
+			result.append("\n");
+		}
+
+		return result.toString();
+	}
+
 	@Override
 	public String toString() {
 		return columns.toString();

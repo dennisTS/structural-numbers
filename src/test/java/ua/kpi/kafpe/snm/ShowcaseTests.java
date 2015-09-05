@@ -129,7 +129,9 @@ public class ShowcaseTests {
 
         StructuralNumber circuit = new Multiplication(number1, number2, number3, number4).perform();
 
+        StructuralNumber differentiationBy1 = new AlgebraicDifferentiation(circuit, 4).perform();
 
+        System.out.println(differentiationBy1);
     }
 
 }

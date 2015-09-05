@@ -24,11 +24,6 @@ public class Determinant extends StructuralNumberOperation {
 		this.number = copyStructuralNumber(number);
 		this.numberMap = new HashMap<>(numberMap);
 	}
-	
-	@Override
-	public StructuralNumber perform() {
-		throw new UnsupportedOperationException();
-	}
 
 	//TODO can be optimized by pre-compiling a function with separate delayed calculation
 	public Complex calculate() {
