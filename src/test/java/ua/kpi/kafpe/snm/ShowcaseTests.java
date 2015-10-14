@@ -131,7 +131,14 @@ public class ShowcaseTests {
 
         StructuralNumber differentiationBy1 = new AlgebraicDifferentiation(circuit, 4).perform();
 
-        System.out.println(differentiationBy1);
+        System.out.println(differentiationBy1.toReadableString());
+
+        for(;;) {
+            testAdd();
+            testDifferentiateAlgebraic();
+            testDifferentiateOpposite();
+            testMultiply();
+        }
     }
 
 }
