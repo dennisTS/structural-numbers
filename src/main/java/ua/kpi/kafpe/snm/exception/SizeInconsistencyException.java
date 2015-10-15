@@ -7,4 +7,11 @@ public class SizeInconsistencyException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 139983900377573944L;
 
+	public SizeInconsistencyException() {
+
+	}
+
+	public SizeInconsistencyException(String message) {
+		super(message);
+	}
 }
