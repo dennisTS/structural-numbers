@@ -45,4 +45,26 @@ public class DeterminantTest {
 		assertEquals(expResult, actResult);
 	}
 
+	@Test
+	public void testToStringFormula() {
+		final StructuralNumber number = new StructuralNumber.Builder()
+				.addColumn(1, 2)
+				.addColumn(9, 8)
+				.build();
+		final Map <Integer, Complex> numberMap = new HashMap<>();
+		numberMap.put(2, new Complex(2D, 1D));
+		numberMap.put(9, new Complex(0D, -2D));
+		numberMap.put(8, new Complex(4D, 8D));
+		numberMap.put(1, new Complex(1D, 0D));
+
+		final Determinant determinant = new Determinant(number, numberMap);
+		determinant.calculate();
+
+		final String expResult = "x8 * x9 + x1 * x2";
+
+		final String actResult = determinant.toStringFormula();
+
+		assertEquals(expResult, actResult);
+	}
+
 }

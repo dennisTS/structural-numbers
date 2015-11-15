@@ -16,6 +16,8 @@ public class Determinant extends StructuralNumberOperation {
 	private final StructuralNumber number;
 
 	private final Map<Integer, Complex> numberMap;
+
+	private StringBuilder stringFormula;
 	
 	public Determinant(StructuralNumber number, Map<Integer, Complex> numberMap) {
 		checkNotNull(number);
@@ -23,6 +25,8 @@ public class Determinant extends StructuralNumberOperation {
 		
 		this.number = copyStructuralNumber(number);
 		this.numberMap = new HashMap<>(numberMap);
+
+		stringFormula = new StringBuilder();
 	}
 
 	//TODO can be optimized by pre-compiling a function with separate delayed calculation
@@ -34,7 +38,12 @@ public class Determinant extends StructuralNumberOperation {
 		
 		for (StructuralNumberColumn column : getColumnsCopyFromNumber(number)) {
 			sum = sum.add(calculateColumnProduct(column));
+
+			stringFormula.append(" + ");
 		}
+
+		trimFormulaForSign("+");
+
 		return sum;
 	}
 
@@ -43,9 +52,21 @@ public class Determinant extends StructuralNumberOperation {
 		
 		for (Integer integer : column.getInnerColumnCopy()) {
 			product = product.multiply(numberMap.get(integer));
+
+			stringFormula.append("x" + integer + " * ");
 		}
-		
+
+		trimFormulaForSign("*");
+
 		return product;
 	}
 
+	private void trimFormulaForSign(String sign) {
+		stringFormula.deleteCharAt(stringFormula.lastIndexOf(sign));
+		stringFormula = new StringBuilder(stringFormula.toString().trim());
+	}
+
+	public String toStringFormula() {
+		return stringFormula.toString();
+	}
 }

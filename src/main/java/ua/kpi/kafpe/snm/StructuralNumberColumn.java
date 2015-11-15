@@ -89,7 +89,7 @@ public class StructuralNumberColumn {
 		return innerColumn.toString();
 	}
 
-	public Set<? extends Integer> getInnerColumnCopy() {
+	public Set<Integer> getInnerColumnCopy() {
 		return new HashSet<>(this.innerColumn);
 	}
 }

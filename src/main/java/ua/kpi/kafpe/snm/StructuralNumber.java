@@ -70,7 +70,8 @@ public final class StructuralNumber {
 			return number;
 		}
 	}
-	
+
+	//TODO operation - interface, this stuff - to helper class with public methods
 	public static abstract class StructuralNumberOperation {
 		public StructuralNumber perform() {
 			throw new UnsupportedOperationException();
