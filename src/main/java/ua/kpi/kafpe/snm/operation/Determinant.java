@@ -7,6 +7,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.apache.commons.math3.complex.Complex;
 
+import ua.kpi.kafpe.snm.Expression;
 import ua.kpi.kafpe.snm.StructuralNumber;
 import ua.kpi.kafpe.snm.StructuralNumber.StructuralNumberOperation;
 import ua.kpi.kafpe.snm.StructuralNumberColumn;
@@ -17,7 +18,7 @@ public class Determinant extends StructuralNumberOperation {
 
 	private final Map<Integer, Complex> numberMap;
 
-	private StringBuilder stringFormula;
+	private Expression expression;
 	
 	public Determinant(StructuralNumber number, Map<Integer, Complex> numberMap) {
 		checkNotNull(number);
@@ -26,7 +27,7 @@ public class Determinant extends StructuralNumberOperation {
 		this.number = copyStructuralNumber(number);
 		this.numberMap = new HashMap<>(numberMap);
 
-		stringFormula = new StringBuilder();
+		expression = new Expression();
 	}
 
 	//TODO can be optimized by pre-compiling a function with separate delayed calculation
@@ -38,35 +39,27 @@ public class Determinant extends StructuralNumberOperation {
 		
 		for (StructuralNumberColumn column : getColumnsCopyFromNumber(number)) {
 			sum = sum.add(calculateColumnProduct(column));
-
-			stringFormula.append(" + ");
 		}
-
-		trimFormulaForSign("+");
 
 		return sum;
 	}
 
 	private Complex calculateColumnProduct(StructuralNumberColumn column) {
+		Expression productExpression = new Expression();
+
 		Complex product = Complex.ONE;
 		
 		for (Integer integer : column.getInnerColumnCopy()) {
 			product = product.multiply(numberMap.get(integer));
 
-			stringFormula.append("x" + integer + " * ");
+			productExpression.multiply("x" + integer);
 		}
 
-		trimFormulaForSign("*");
-
+		expression.addOrSubtract(productExpression, Expression.Sign.PLUS);
 		return product;
 	}
 
-	private void trimFormulaForSign(String sign) {
-		stringFormula.deleteCharAt(stringFormula.lastIndexOf(sign));
-		stringFormula = new StringBuilder(stringFormula.toString().trim());
-	}
-
 	public String toStringFormula() {
-		return stringFormula.toString();
+		return expression.toString();
 	}
 }
